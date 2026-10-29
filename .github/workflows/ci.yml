@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  hygiene:
+    name: Repo hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Block committed env files
+        run: |
+          found=$(git ls-files | grep -E '(^|/)\.env(\..+)?$' | grep -v '\.env\.example$' || true)
+          if [ -n "$found" ]; then
+            echo "::error::Env files must not be committed:"; echo "$found"; exit 1
+          fi
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          config: .markdownlint.jsonc
+          globs: "**/*.md"
+
+  build:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+    needs: hygiene
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Node workspace
+        id: detect
+        run: |
+          if [ -f package.json ]; then echo "node=true" >> "$GITHUB_OUTPUT"; else echo "node=false" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: pnpm/action-setup@v4
+        if: steps.detect.outputs.node == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.detect.outputs.node == 'true'
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: Install
+        if: steps.detect.outputs.node == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        if: steps.detect.outputs.node == 'true'
+        run: pnpm -r --if-present lint
+
+      - name: Test
+        if: steps.detect.outputs.node == 'true'
+        run: pnpm -r --if-present test
+
+      - name: Build
+        if: steps.detect.outputs.node == 'true'
+        run: pnpm -r --if-present build
+
+      - name: No code yet
+        if: steps.detect.outputs.node != 'true'
+        run: echo "No package.json yet — skipping Node steps (Phase 0)."

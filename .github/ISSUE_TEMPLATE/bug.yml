@@ -1,0 +1,30 @@
+name: Bug
+description: Something does not match the spec
+title: "fix: "
+labels: ["type:bug"]
+body:
+  - type: dropdown
+    id: found_by
+    attributes:
+      label: Found by
+      description: Used for the defects caught / escaped KPI
+      options: [qa-agent (pre-merge), ci (pre-merge), human (post-merge), other]
+    validations:
+      required: true
+  - type: input
+    id: spec
+    attributes:
+      label: Related spec
+      placeholder: specs/001-goals.md
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+    validations:
+      required: true

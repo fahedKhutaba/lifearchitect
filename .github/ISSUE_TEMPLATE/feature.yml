@@ -1,0 +1,40 @@
+name: Feature
+description: A user-facing capability, implemented from a spec
+title: "feat: "
+labels: ["type:feature"]
+body:
+  - type: input
+    id: spec
+    attributes:
+      label: Spec
+      description: Path to the spec this feature implements
+      placeholder: specs/001-goals.md
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Owning agent
+      options: [backend, frontend, qa, lead]
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of this issue
+      description: Which part of the spec this issue covers
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Copied or referenced from the spec
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / dependencies

@@ -1,0 +1,26 @@
+name: Task
+description: Setup, chore, docs or infrastructure work
+title: "chore: "
+labels: ["type:task"]
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Owning agent
+      options: [lead, backend, frontend, qa]
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+    validations:
+      required: true
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of done
+      value: |
+        - [ ]
+    validations:
+      required: true
