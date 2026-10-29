@@ -1,0 +1,46 @@
+name: Weekly build log
+
+# Every Friday, open an issue reminding the Lead to write the weekly build log.
+on:
+  schedule:
+    - cron: "0 9 * * 5" # Friday 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  open-issue:
+    name: Open weekly build log issue
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Create issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(( $(find docs/journal/weekly -name 'build-log-*.md' | wc -l) + 1 ))
+          nn=$(printf '%02d' "$n")
+          monday=$(date -u -d "-$(( $(date -u +%u) - 1 )) days" +%F)
+          title="docs: weekly build log #$nn (week of $monday)"
+
+          if gh issue list --state all --search "in:title \"$title\"" --json number --jq '.[].number' | grep -q .; then
+            echo "Issue already exists: $title"; exit 0
+          fi
+
+          gh issue create \
+            --title "$title" \
+            --label "agent:lead" --label "type:task" \
+            --body "$(cat <<EOF
+          ## Goal
+          Write the weekly build log for the week of $monday.
+
+          ## Definition of done
+          - [ ] \`docs/journal/weekly/build-log-$nn.md\` created from \`_template.md\`
+          - [ ] KPIs filled from \`docs/journal/activity-log.md\`
+          - [ ] Lesson of the week and post draft written
+          - [ ] Session logged with \`/log-session\`
+          EOF
+          )"
