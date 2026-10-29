@@ -21,3 +21,5 @@ Append one row per working session (newest at the bottom). Use `/log-session` in
 | 2026-10-29 | — | lead | — | — | — | done | 0 | Repo skeleton, README, GitHub kit, journal created |
 | 2026-10-29 | #1 | lead | claude-opus-5-5 | ~20 | 6% session / 3% weekly (Pro) | done | 3 | Old Node and Claude installs only showed up once versions were checked; installer migration and shell alias need a human (blocked for the agent) |
 | 2026-10-29 | #2 | lead | claude-opus-5-5 | ~20 | ~10% session / ~4% weekly (Pro) | done | 3 | Repo settings applied via `gh api`; board view and built-in workflows are UI-only, and `project` token scope had to be granted by the user |
+| 2026-10-29 | #3 | lead | claude-opus-5-5 | ~25 | 12% session / 4% weekly (Pro, cumulative) | partial | 1 | Weekly entry deferred to Friday; added a scheduled Action that opens the weekly issue (tested via manual run → #15) |
+| 2026-10-29 | #4 | lead | claude-opus-5-5 | ~40 | 12% session / 4% weekly (Pro, cumulative) | done | 2 | Issue left stack details and auth open; asking first prevented guessing; simplified auth to login-only with admin-created accounts. /start-issue = 27% of usage → try a cheaper model |
