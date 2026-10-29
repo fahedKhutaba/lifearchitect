@@ -1,0 +1,17 @@
+{
+  "name": "lifearchitect",
+  "private": true,
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "generate": "turbo run generate"
+  },
+  "devDependencies": {
+    "turbo": "^2.11.10"
+  }
+}

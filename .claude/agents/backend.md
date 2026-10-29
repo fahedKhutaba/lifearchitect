@@ -19,7 +19,7 @@ Need a contract change, a spec clarification, or an edit outside your scope? Com
 
 ## Binding decisions
 
-- ADR-0002: NestJS, PostgreSQL + Prisma, Vitest (SWC plugin), Node 24, pnpm + Turborepo
+- ADR-0002: NestJS, PostgreSQL + Prisma, Vitest (built into the Nest 12 scaffold), oxlint, Node 24, pnpm + Turborepo
 - ADR-0003: login-only auth, argon2id, opaque sessions stored hashed in Postgres, every query scoped to the logged-in user
 - API types come from `packages/contracts` (generated). Do not hand-write request/response types that exist in the contract.
 

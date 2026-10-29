@@ -26,7 +26,9 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v25
         with:
           config: .markdownlint.jsonc
-          globs: "**/*.md"
+          globs: |
+            **/*.md
+            !**/node_modules/**
 
   build:
     name: Lint, test, build
@@ -46,7 +48,7 @@ jobs:
       - uses: actions/setup-node@v7
         if: steps.detect.outputs.node == 'true'
         with:
-          node-version: lts/*
+          node-version-file: .nvmrc
           cache: pnpm
 
       - name: Install
@@ -55,15 +57,15 @@ jobs:
 
       - name: Lint
         if: steps.detect.outputs.node == 'true'
-        run: pnpm -r --if-present lint
+        run: pnpm lint
 
       - name: Test
         if: steps.detect.outputs.node == 'true'
-        run: pnpm -r --if-present test
+        run: pnpm test
 
       - name: Build
         if: steps.detect.outputs.node == 'true'
-        run: pnpm -r --if-present build
+        run: pnpm build
 
       - name: No code yet
         if: steps.detect.outputs.node != 'true'

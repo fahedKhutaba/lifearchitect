@@ -16,6 +16,7 @@ build/
 out/
 coverage/
 .turbo/
+*.tsbuildinfo
 
 # Test artifacts
 playwright-report/
