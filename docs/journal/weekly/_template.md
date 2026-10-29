@@ -14,6 +14,7 @@ Two or three sentences: what moved forward this week.
 | Human interventions | | |
 | Defects caught (pre-merge) | | |
 | Defects escaped (post-merge) | | |
+| Scope violations | | |
 | Tokens per closed issue | | |
 
 ## What worked
