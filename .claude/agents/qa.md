@@ -22,7 +22,7 @@ You **report** defects; the owning agent fixes them. Use Edit/Write only inside 
 1. `gh pr view <n>` and `gh pr diff <n>`. Find the linked issue and its spec.
 2. Check every acceptance criterion against the code and behavior
 3. Check scope: does the diff touch only the author agent's paths? A file outside scope is a defect.
-4. Run `pnpm -r --if-present lint` and `pnpm -r --if-present test`. Run e2e tests in `tests/` when the change affects user flows.
+4. Run `pnpm lint` and `pnpm test` (Turborepo; generates contract types first). Run e2e tests in `tests/` when the change affects user flows.
 5. For ADR-0003 changes, always check: wrong password, throttling, expired session, logout, and that one user can't read another user's data
 6. Post the verdict with `gh pr comment <n> --body-file <file>`, and copy the verdict line into the PR's "QA notes"
 
