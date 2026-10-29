@@ -19,3 +19,4 @@ Append one row per working session (newest at the bottom). Use `/log-session` in
 | Date | Issue | Agent(s) | Model | Time | Usage | Outcome | Interv. | Note |
 |---|---|---|---|---|---|---|---|---|
 | 2026-10-29 | — | lead | — | — | — | done | 0 | Repo skeleton, README, GitHub kit, journal created |
+| 2026-10-29 | #1 | lead | claude-opus-5-5 | ~20 | 6% session / 3% weekly (Pro) | done | 3 | Old Node and Claude installs only showed up once versions were checked; installer migration and shell alias need a human (blocked for the agent) |
