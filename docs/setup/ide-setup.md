@@ -44,7 +44,7 @@ Tick each item and record the version. When everything is green, close the setup
 | Secret scanning + push protection on | GitHub → Settings → Code security | [x] |
 | Branch protection on `main` (PR required, CI must pass) | GitHub → Settings → Branches | [x] |
 | Project board created (Backlog → Ready → In Progress → In Review → Done) | GitHub → Projects | [x] |
-| Board workflows on (item closed → Done, PR linked → In Review) | Project → Workflows | [ ] |
+| Board workflows on (item closed → Done, PR linked → In Review) | Project → Workflows | [x] |
 
 ## 5. Smoke test
 
