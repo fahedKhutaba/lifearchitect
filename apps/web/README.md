@@ -10,3 +10,9 @@ Next.js app for LifeArchitect. Owned by the Frontend agent ([`.claude/agents/fro
 | `pnpm test` | Vitest |
 
 API types come from `@lifearchitect/contracts`. Read `AGENTS.md` before writing Next.js code.
+
+## Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_API_URL` | `http://localhost:3001` | Base URL of the API. The home page calls `${NEXT_PUBLIC_API_URL}/health` from the browser to show the API status. Read at build time. |
