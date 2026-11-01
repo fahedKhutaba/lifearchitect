@@ -1,6 +1,6 @@
-import type { components, paths } from "./generated/api";
+import type { components, paths } from "./generated/api.js";
 
-export type { components, paths, operations } from "./generated/api";
+export type { components, paths, operations } from "./generated/api.js";
 
 export type Health = components["schemas"]["Health"];
 export type HealthResponse =
