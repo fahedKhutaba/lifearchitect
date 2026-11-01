@@ -10,11 +10,18 @@ Versions, not dates. Each version ships only when the previous one is stable.
 - Activity log and build-log metrics
 - Dry run: one tiny feature through the whole team
 
-## V1 — Foundation (no AI)
+## V1 — Weekly targets (no AI)
 
-- Goals, milestones, tasks
-- Dashboard with progress
+- Set weekly targets (e.g. 5 h sport per week) and log progress during the week
+- "This week" dashboard: progress, pace status, weekly score, trend
 - Responsive web app (mobile app later)
+- Scope: [`docs/product/v1-scope.md`](product/v1-scope.md)
+
+## V1.x — Goals and habits
+
+- Goals, milestones, tasks; targets optionally linked to goals
+- Habits with schedules contributing to targets
+- Sports watch integration (Garmin)
 
 ## V2 — AI Goal Assistant
 
