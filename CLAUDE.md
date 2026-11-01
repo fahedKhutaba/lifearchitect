@@ -4,7 +4,7 @@ Instructions for every Claude Code agent working in this repo. Keep this file sh
 
 ## Project
 
-AI-native personal operating system: goals → milestones → tasks → dashboard. Current version: **V1 (no AI features)**.
+AI-native personal operating system. Current version: **V1 — weekly targets and progress tracking (no AI features)**. Scope: `docs/product/v1-scope.md`; goals, milestones, tasks and habits are out of V1.
 
 ## Stack
 
