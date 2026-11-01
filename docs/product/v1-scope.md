@@ -86,7 +86,7 @@ Base: next-shadcn-dashboard-starter. Rule: reuse template components first; buil
 
 ## Rules to confirm in the spec
 
-Suggested answers are marked; the product owner confirms or changes them.
+Confirmed by the Lead on 2026-11-01 as suggested below; the binding wording is in [`specs/001-weekly-targets.md`](../../specs/001-weekly-targets.md) (rules R1–R21). Pace was changed to count only days completed before today.
 
 1. **Changing a target's weekly amount mid-week** — *Suggested:* applies from the current week; past weeks keep the amount they had (store target changes with an `effectiveFrom` date).
 2. **Logging for past weeks** — allowed, or current week only? *Suggested:* allow, limited to the last 4 weeks.
