@@ -29,6 +29,7 @@ Example: "Sport training — 5 hours per week." During the week the user logs co
 ## Domain model
 
 ### Target
+
 | Field | Notes |
 |---|---|
 | id | |
@@ -39,6 +40,7 @@ Example: "Sport training — 5 hours per week." During the week the user logs co
 | createdAt | |
 
 ### Progress entry
+
 | Field | Notes |
 |---|---|
 | id | |
@@ -51,6 +53,7 @@ Example: "Sport training — 5 hours per week." During the week the user logs co
 | createdAt | |
 
 ### Week
+
 Not stored. Derived from the entry date, the user's timezone and the user's week start day (default: Sunday).
 
 **Weekly progress = sum of the target's entries whose date falls in that week.**
