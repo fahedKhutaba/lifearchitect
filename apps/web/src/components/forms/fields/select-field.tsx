@@ -32,6 +32,8 @@ export function SelectField({
       </FieldLabel>
       <Select
         name={field.name}
+        // Local patch: items lets Base UI show the option label (not the raw value) in the trigger.
+        items={options}
         value={field.state.value}
         onValueChange={(value) => field.handleChange(value ?? '')}
       >

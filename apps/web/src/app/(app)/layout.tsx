@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+import { ClientOnly } from '@/components/client-only';
 import AppSidebar from '@/components/layout/app-sidebar';
 import Header from '@/components/layout/header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
@@ -11,9 +13,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       >
         Skip to content
       </a>
-      <AppSidebar />
+      {/* usePathname() is dynamic on [id] routes, so the nav parts sit in Suspense. */}
+      <Suspense>
+        {/* Phone vs desktop sidebar differs from the prerendered HTML, so render it after mount. */}
+        <ClientOnly>
+          <AppSidebar />
+        </ClientOnly>
+      </Suspense>
       <SidebarInset id='main-content' tabIndex={-1} className='scroll-mt-16'>
-        <Header />
+        <Suspense>
+          <Header />
+        </Suspense>
         {children}
       </SidebarInset>
     </SidebarProvider>
