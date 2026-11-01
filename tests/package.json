@@ -1,0 +1,17 @@
+{
+  "name": "@lifearchitect/tests",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e": "playwright test && playwright test --config playwright.api-down.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24",
+    "ajv": "^8.20.0",
+    "js-yaml": "^4.3.2",
+    "typescript": "^5.9.3"
+  }
+}
