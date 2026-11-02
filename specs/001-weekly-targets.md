@@ -40,19 +40,19 @@ These rules apply to every screen and to the API. They are the source for the co
 
 - **R9 — Fields.** `amount` (> 0, max 1000, in the target's unit), `date` (calendar day), `note` (optional, max 280 chars), `source` (`manual` only in V1).
 - **R10 — Precision.** `hours`: steps of 0.25; `minutes` and `times`: whole numbers; `km`: steps of 0.1.
-- **R11 — Allowed dates.** From the first day of the week **4 weeks before the current week** up to **today**. Future dates are rejected. Entries older than that window are read-only (cannot be edited or deleted).
+- **R11 — Allowed dates.** From **1 year before today** up to **today**. Future dates are rejected. Entries older than 1 year are read-only (cannot be edited or deleted). The UI shows the **last 4 weeks** by default (see screen 4); this is a display default, not a limit.
 - **R12 — Logging targets.** Entries can be added only to active targets. Entries of paused or archived targets can still be edited or deleted within the R11 window.
 
 ### Pace and score
 
-- **R13 — Days completed** = number of days of the current week that ended before today (0 on the first day, 6 on the last day).
-- **R14 — Expected so far** = weeklyAmount × (days completed ÷ 7).
+- **R13 — Days elapsed** = number of days of the current week up to and including today (1 on the first day, 7 on the last day). Today counts as elapsed.
+- **R14 — Expected so far** = weeklyAmount × (days elapsed ÷ 7).
 - **R15 — Pace status** (current week, active targets only):
   - `Done` if progress ≥ weeklyAmount;
   - otherwise `On track` if progress ≥ expected so far;
   - otherwise `Behind`.
-  On the first day of the week every unfinished target is `On track`.
-- **R16 — Remaining** = max(0, weeklyAmount − progress). **Per day** = remaining ÷ days left, where days left = 7 − days completed (today counts as a day left). Shown as e.g. "2 h left · ~30 min/day"; hidden when `Done`.
+  Because today counts (R13), a target with no progress on the first day is `Behind` (expected = 1/7 of the amount).
+- **R16 — Remaining** = max(0, weeklyAmount − progress). **Per day** = remaining ÷ days left, where days left = 8 − days elapsed (today counts as a day left as well as elapsed: 7 on the first day, 1 on the last). Shown as e.g. "2 h left · ~30 min/day"; hidden when `Done`.
 - **R17 — Exceeding.** Progress shows the real value (e.g. 6 / 5 h, bar full). For scoring, completion is capped at 100%.
 - **R18 — Weekly score** for a week = simple average of capped completion of the targets that were **active in that week** (per R6). No active targets → no score (shown as "—", not 0%).
 - **R19 — History.** Trend and history charts show the last 8 weeks including the current one, and judge each week against the amount and status in force that week (R6).
@@ -99,7 +99,7 @@ These rules apply to every screen and to the API. They are the source for the co
 ### 4. Target detail
 
 - [ ] Shows name, unit, current weekly amount, status, and this week's progress and pace (same as the card).
-- [ ] Lists the entries of a selected week (default: current week), newest date first, with amount, date and note.
+- [ ] Lists the entries of a selected week, newest date first, with amount, date and note. The week selector shows the current week and the 3 before it (last 4 weeks) by default; older weeks within the R11 window can be reached.
 - [ ] Each entry inside the R11 window has Edit (opens screen 5 pre-filled) and Delete (with confirm). Older entries have no actions.
 - [ ] A bar chart shows the last 8 weeks: actual per week against that week's amount (R19); exceeded weeks show the real value.
 - [ ] Unknown or another user's target id → "Target not found" page with a link back to Targets.
@@ -124,7 +124,7 @@ These rules apply to every screen and to the API. They are the source for the co
 - [ ] All screens work at phone width (360 px) without horizontal scrolling.
 - [ ] All amounts are formatted per unit (e.g. "1.5 h", "30 min", "3 times", "5 km"); sub-hour per-day values of an hours target read as minutes.
 - [ ] Pace, remaining, score and history logic is covered by unit tests on both backend and web, including: first day of week, last day, exceeded target, mid-week amount change (R6), paused week excluded from score (R18), week start Sunday vs Monday, timezone where UTC date differs from local date.
-- [ ] QA e2e covers: create target → quick log → pace changes → undo; log a past entry (allowed) and a 5-week-old entry (rejected); user A cannot see user B's target.
+- [ ] QA e2e covers: create target → quick log → pace changes → undo; log a past entry (allowed), a future entry (rejected) and an entry older than 1 year (rejected); user A cannot see user B's target.
 
 ## API / contract changes
 
@@ -159,5 +159,6 @@ Defaults below were chosen while drafting; the Lead confirms or changes them bef
 
 1. R4 limits: 60-char name, max weekly amount and entry amount of 1000.
 2. R5: unit locked after the first entry (alternative: never editable after creation).
-3. R11: entries older than the 4-week window are read-only, not just "cannot be created".
+3. R11: entries older than 1 year are read-only, not just "cannot be created".
 4. R20: Undo window of 5 seconds.
+5. Screen 4: how older weeks (beyond the default 4) are reached, e.g. "Show earlier weeks" or a week picker.
