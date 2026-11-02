@@ -1,6 +1,6 @@
 # Spec 001: Weekly targets and progress tracking
 
-- **Status:** Draft — rules confirmed by the Lead on 2026-11-01; screenshots pending the prototype review (#23)
+- **Status:** Ready — rules confirmed by the Lead on 2026-11-01 and 2026-11-02; screenshots are added after the prototype review (#23)
 - **Version:** V1
 - **Issues:** #25 (epic #20, contract #26)
 
@@ -99,7 +99,7 @@ These rules apply to every screen and to the API. They are the source for the co
 ### 4. Target detail
 
 - [ ] Shows name, unit, current weekly amount, status, and this week's progress and pace (same as the card).
-- [ ] Lists the entries of a selected week, newest date first, with amount, date and note. The week selector shows the current week and the 3 before it (last 4 weeks) by default; older weeks within the R11 window can be reached.
+- [ ] Lists the entries of a selected week, newest date first, with amount, date and note. The week selector shows the current week and the 3 before it (last 4 weeks) by default; a **"Show earlier weeks"** button loads older weeks, back to the R11 window.
 - [ ] Each entry inside the R11 window has Edit (opens screen 5 pre-filled) and Delete (with confirm). Older entries have no actions.
 - [ ] A bar chart shows the last 8 weeks: actual per week against that week's amount (R19); exceeded weeks show the real value.
 - [ ] Unknown or another user's target id → "Target not found" page with a link back to Targets.
@@ -155,10 +155,10 @@ Screens and template mapping follow the scope doc and the component map on #23. 
 
 ## Open questions
 
-Defaults below were chosen while drafting; the Lead confirms or changes them before the spec moves to **Ready**.
+None. The Lead confirmed the drafting defaults on 2026-11-02:
 
-1. R4 limits: 60-char name, max weekly amount and entry amount of 1000.
-2. R5: unit locked after the first entry (alternative: never editable after creation).
-3. R11: entries older than 1 year are read-only, not just "cannot be created".
-4. R20: Undo window of 5 seconds.
-5. Screen 4: how older weeks (beyond the default 4) are reached, e.g. "Show earlier weeks" or a week picker.
+- R4 limits: 60-char name, max weekly amount and entry amount of 1000.
+- R5: unit locked after the first entry.
+- R11: entries older than 1 year are read-only, not just "cannot be created".
+- R20: Undo window of 5 seconds.
+- Screen 4: older weeks are reached with a **"Show earlier weeks"** button.
