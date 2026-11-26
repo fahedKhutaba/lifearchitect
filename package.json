@@ -13,6 +13,6 @@
     "generate": "turbo run generate"
   },
   "devDependencies": {
-    "turbo": "^2.11.10"
+    "turbo": "^2.11.13"
   }
 }
